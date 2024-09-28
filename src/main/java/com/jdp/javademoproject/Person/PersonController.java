@@ -35,16 +35,14 @@ public class PersonController {
     @PostMapping
     public ResponseEntity<Person> createPerson(@RequestBody Person person) {
         Person personCreated = personRepository.save(person);
-
         return new ResponseEntity<>(personCreated, HttpStatus.CREATED);
     }
 
     @PostMapping("/{name}")
     public ResponseEntity<Person> createPersonByName(@PathVariable String name, @RequestBody Person person) {
-
-            person.setName(name);
-            return new ResponseEntity<>(personRepository.save(person), HttpStatus.CREATED);
-
+        person.setName(name);
+        Person personCreated = personRepository.save(person);
+            return new ResponseEntity<>(personCreated, HttpStatus.CREATED);
     }
 
     // PUT
